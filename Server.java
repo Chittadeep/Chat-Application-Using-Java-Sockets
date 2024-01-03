@@ -41,7 +41,8 @@ public class Server{
                 if(msg.equals("quit()"))
                 {
                     socket.close();
-                    System.out.println("Server reading stopped");
+                    System.out.println("connection is closed");
+                    System.exit(0);
                     break;
                 }
                 
@@ -58,16 +59,17 @@ public class Server{
     private void startWriting()
     {
         Runnable r2 = ()->{
-            System.err.println("Writer started");
+            System.out.println("Writer started");
             try{
             while(!socket.isClosed()){
             BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
             String msg = br1.readLine();
             out.println(msg);
             out.flush();
-            if(msg.equals("quit()"))
+            if(msg.equals("quit()")){
                 socket.close();
                 break;
+            }
             }
             System.out.println("Server Writing Stopped");
         }

@@ -39,7 +39,8 @@ public class Client {
                 if(msg.equals("quit()"))
                 {
                     socket.close();
-                    System.out.println("Client reading stopped");
+                    System.out.println("connection is closed");
+                    System.exit(0);
                     break;
                 }
             }
@@ -64,9 +65,10 @@ public class Client {
                 String msg = br.readLine();
                 out.println(msg);
                 out.flush();
-                if(msg.equals("quit()"))
+                if(msg.equals("quit()")){
                     socket.close();
                     break;
+                }
                 }
                 System.out.println("Client writing stopped");
             }
